@@ -10,7 +10,7 @@ btn.addEventListener("click", () => {
         return;
     } else {
         makeStickNotes(data, colorValue);
-        textArea = "";
+        textArea.value = "";        
         document.querySelector(".no-notes").style.display = "none";
         removeStickyNotes();
     }
@@ -28,16 +28,25 @@ function removeStickyNotes() {
 
 let note = document.querySelector(".each-notes");
 function makeStickNotes(text, color) {
+
     let div = document.createElement("div");
-    div.innerHTML = `<p>${text}</p><button class = "btn2">X</button`;
+    div.innerHTML = `<div class="noteData">${text}</div><span class = "btn2">X</span>`;
     div.style.backgroundColor = color;
     div.style.width = "200px";
     div.style.height = "200px";
     div.style.display = "inline-block";
-    div.style.marginLeft = "10px";
+    div.style.marginLeft = "15px";
     div.style.marginTop = "10px";
     div.style.borderRadius = "5px";
-    let btn2  = document.querySelectorAll(".btn2");
+    div.style.wordWrap = "break-word";
+    if(text.length>50){
+        div.style.overflowY="scroll"
+    }
+    div.style.cursor = "pointer";
+    div.style.position = "relative";
+    div.style.boxShadow = "0 4px 15px 0 #000428"
+    
+
     note.appendChild(div);
 
 }
